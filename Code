@@ -1,0 +1,239 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(2, 3, 4, 5, 6, 7);
+
+const int pulsePin = 8; // Input signal connected to Pin 8 of Arduino
+
+int pulseHigh; // Integer variable to capture High time of the incoming pulse
+int pulseLow; // Integer variable to capture Low time of the incoming pulse
+float pulseTotal; // Float variable to capture Total time of the incoming pulse
+float frequency; // Calculated Frequency
+char Note;
+String noteName;
+
+float C = 56.35;
+float D = 68.35;
+float E = 70.60;
+float e = 81.83;
+float G = 94.50;
+float A = 107.50; 
+float B = 120.87;
+
+void setup()
+{
+    pinMode(pulsePin,INPUT);
+    lcd.begin(16, 2);
+    lcd.setCursor(0,0);
+    lcd.print("Connor Martin's");
+    lcd.setCursor(0,1);
+    lcd.print("Guitar Tuner ");
+    delay(5000);
+}
+void loop()
+{
+    lcd.setCursor(0,0);
+    lcd.print("Guitar Tuner    ");
+    lcd.setCursor(0,1);
+    lcd.print("                ");
+    
+    pulseHigh = pulseIn(pulsePin,HIGH);
+    pulseLow = pulseIn(pulsePin,LOW);
+    
+    pulseTotal = pulseHigh + pulseLow; // Time period of the pulse in microseconds
+    frequency=1000000/pulseTotal; // Frequency in Hertz (Hz)
+
+  
+    if((15<=frequency) & (frequency<=72)){ 
+      Note = E;
+      noteName = "---[E]   ";
+    }
+    else if((72<=frequency) & (frequency<76.3)){ 
+      Note = A;
+      noteName = " --[E]   ";
+    }
+    else if((76.3<=frequency) & (frequency<80.5)){ 
+      Note = A;
+      noteName = "  -[E]   ";
+    }
+    else if((80.5<=frequency) & (frequency<83.5)){
+      Note = G;
+      noteName = "   [E]   ";
+    }
+    else if((83.5<=frequency) & (frequency<86.67)){
+      Note = B;
+      noteName = "   [E]-  ";
+    }
+    else if((86.67<=frequency) & (frequency<91.34)){
+      Note = e;
+      noteName = "   [E]-- ";
+    }
+    else if((91.34<=frequency) & (frequency<96)){
+      Note = e;
+      noteName = "   [E]---";
+    }
+
+
+
+
+
+  
+    else if((96<=frequency) & (frequency<100.7)){ 
+      Note = A;
+      noteName = "---[A]   ";
+    }  
+    else if((100.7<=frequency) & (frequency<105.35)){ 
+      Note = A;
+      noteName = " --[A]   ";
+    }
+    else if((105.35<=frequency) & (frequency<108.9)){
+      Note = D;
+      noteName = "  -[A]   ";
+    }
+    else if((108.9<=frequency) & (frequency<111)){
+      Note = G;
+      noteName = "   [A]   ";
+    }
+    else if((111<=frequency) & (frequency<116.2)){
+      Note = B;
+      noteName = "   [A]-  ";
+    }
+    else if((116.2<=frequency) & (frequency<122.34)){
+      Note = e;
+      noteName = "   [A]-- ";
+    }
+    else if((122.34<=frequency) & (frequency<128.5)){
+      Note = e;
+      noteName = "   [A]---";
+    }
+
+
+
+    else if((128.5<=frequency) & (frequency<134.7)){ 
+      Note = A;
+      noteName = "---[D]   ";
+    }  
+    else if((134.7<=frequency) & (frequency<140.85)){ 
+      Note = A;
+      noteName = " --[D]   ";
+    }
+    else if((140.85<=frequency) & (frequency<145)){
+      Note = D;
+      noteName = "  -[D]   ";
+    }
+    else if((145.01<=frequency) & (frequency<149)){
+      Note = G;
+      noteName = "   [D]   ";
+    }
+    else if((149<=frequency) & (frequency<155.2)){
+      Note = B;
+      noteName = "   [D]-  ";
+    }
+    else if((155.2<=frequency) & (frequency<163.34)){
+      Note = e;
+      noteName = "   [D]-- ";
+    }
+    else if((163.34<=frequency) & (frequency<171.5)){
+      Note = e;
+      noteName = "   [D]---";
+    }
+
+
+
+    else if((171.5<=frequency) & (frequency<179.68)){ 
+      Note = A;
+      noteName = "---[G]   ";
+    }  
+    else if((179.68<=frequency) & (frequency<187.85)){ 
+      Note = A;
+      noteName = " --[G]   ";
+    }
+    else if((187.85<=frequency) & (frequency<193.5)){
+      Note = D;
+      noteName = "  -[G]   ";
+    }
+    else if((193.5<=frequency) & (frequency<198.5)){
+      Note = G;
+      noteName = "   [G]   ";
+    }
+    else if((198.5<=frequency) & (frequency<204.5)){
+      Note = B;
+      noteName = "   [G]-  ";
+    }
+    else if((204.5<=frequency) & (frequency<213)){
+      Note = e;
+      noteName = "   [G]-- ";
+    }
+    else if((213<=frequency) & (frequency<221.5)){
+      Note = e;
+      noteName = "   [G]---";
+    }
+
+
+
+    else if((221.51<=frequency) & (frequency<230)){ 
+      Note = A;
+      noteName = "---[B]   ";
+    }  
+    else if((230<=frequency) & (frequency<238.5)){ 
+      Note = A;
+      noteName = " --[B]   ";
+    }
+    else if((238.51<=frequency) & (frequency<244)){
+      Note = D;
+      noteName = "  -[B]   ";
+    }
+    else if((244<=frequency) & (frequency<250)){
+      Note = G;
+      noteName = "   [B]   ";
+    }
+    else if((250<=frequency) & (frequency<260.84)){
+      Note = B;
+      noteName = "   [B]-  ";
+    }
+    else if((260.84<=frequency) & (frequency<274.67)){
+      Note = e;
+      noteName = "   [B]-- ";
+    }
+    else if((274.67<=frequency) & (frequency<288.5)){
+      Note = e;
+      noteName = "   [B]---";
+    }
+
+
+    else if((288.5<=frequency) & (frequency<302.3)){ 
+      Note = A;
+      noteName = "---[e]   ";
+    }  
+    else if((302.3<=frequency) & (frequency<316.15)){ 
+      Note = A;
+      noteName = " --[e]   ";
+    }
+    else if((316.15<=frequency) & (frequency<327.5)){
+      Note = D;
+      noteName = "  -[e]   ";
+    }
+    else if((327.5<=frequency) & (frequency<332.5)){
+      Note = G;
+      noteName = "   [e]   ";
+    }
+    else if((332.5<=frequency) & (frequency<345)){
+      Note = B;
+      noteName = "   [e]-  ";
+    }
+    else if((345<=frequency) & (frequency<360)){
+      Note = e;
+      noteName = "   [e]-- ";
+    }
+    else if((360<=frequency) & (frequency<1000)){
+      Note = e;
+      noteName = "   [e]---";
+    }
+    
+    
+    
+    lcd.setCursor(0,1);
+    lcd.print("   ");
+    lcd.print(noteName);
+    
+    delay(10);
+}
